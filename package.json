@@ -4,6 +4,11 @@
     "license": "MIT",
     "scripts": {
         "top-level-host:start": "nx serve top-level-host",
+        "level-one-mf-1:start": "nx serve level-one-mf-1",
+        "level-one-mf-2:start": "nx serve level-one-mf-2",
+        "level-one-mf-3:start": "nx serve level-one-mf-3",
+        "level-two-mf-1:start": "nx serve level-two-mf-1",
+        "level-two-mf-2:start": "nx serve level-two-mf-2",
         "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,html,less,yml,yaml}\""
     },
     "private": true,
@@ -53,6 +58,7 @@
         "jest-preset-angular": "~14.0.3",
         "nx": "18.1.2",
         "prettier": "^2.6.2",
+        "prettier-plugin-organize-imports": "^3.2.4",
         "ts-jest": "^29.1.0",
         "ts-node": "10.9.1",
         "typescript": "~5.3.2"

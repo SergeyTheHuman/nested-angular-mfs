@@ -3,7 +3,6 @@ const mf = require('@angular-architects/module-federation/webpack')
 const path = require('path')
 const shareAll = mf.shareAll
 const sharedGlobalServicesConfig = require('../../helpers/shared-global-services.config')
-const webpack = require('webpack')
 const tsConfigPath = path.join(__dirname, '../../tsconfig.base.json')
 const workspaceRootPath = path.join(__dirname, '../../')
 const sharedMappings = new mf.SharedMappings()
@@ -16,7 +15,7 @@ sharedMappings.register(
 
 module.exports = {
     output: {
-        uniqueName: 'topLevelHost',
+        uniqueName: 'levelOneMf3',
         publicPath: 'auto',
     },
     optimization: {
@@ -31,12 +30,13 @@ module.exports = {
         outputModule: true,
     },
     plugins: [
-        new webpack.DefinePlugin({
-            ngDevMode: false,
-        }),
         new ModuleFederationPlugin({
             library: { type: 'module' },
-            remotes: {},
+            name: 'levelOneMf3',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './AppComponent': './apps/level-one-mf-3/src/app.component.ts',
+            },
             shared: {
                 ...shareAll({
                     singleton: true,

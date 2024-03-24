@@ -20,6 +20,9 @@
                     "apps/level-one-mf-2/src/favicon.ico",
                     "apps/level-one-mf-2/src/assets"
                 ],
+                "customWebpackConfig": {
+                    "path": "apps/level-one-mf-2/webpack.config.js"
+                },
                 "styles": ["apps/level-one-mf-2/src/styles.scss"],
                 "scripts": []
             },
@@ -52,6 +55,10 @@
         },
         "serve": {
             "executor": "@angular-builders/custom-webpack:dev-server",
+            "options": {
+                "port": 4212,
+                "publicHost": "http://localhost:4212"
+            },
             "configurations": {
                 "production": {
                     "buildTarget": "level-one-mf-2:build:production"
