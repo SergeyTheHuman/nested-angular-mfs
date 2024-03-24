@@ -23,7 +23,11 @@
                 "customWebpackConfig": {
                     "path": "apps/level-one-mf-1/webpack.config.js"
                 },
-                "styles": ["apps/level-one-mf-1/src/styles.scss"],
+                "styles": [
+                    "shared-styles/reset.scss",
+                    "shared-styles/shared.scss",
+                    "apps/level-one-mf-1/src/styles.scss"
+                ],
                 "scripts": []
             },
             "configurations": {

@@ -23,7 +23,11 @@
                 "customWebpackConfig": {
                     "path": "apps/top-level-host/webpack.config.js"
                 },
-                "styles": ["apps/top-level-host/src/styles.scss"],
+                "styles": [
+                    "shared-styles/reset.scss",
+                    "shared-styles/shared.scss",
+                    "apps/top-level-host/src/styles.scss"
+                ],
                 "scripts": []
             },
             "configurations": {

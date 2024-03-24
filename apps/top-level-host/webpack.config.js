@@ -36,7 +36,6 @@ module.exports = {
         }),
         new ModuleFederationPlugin({
             library: { type: 'module' },
-            remotes: {},
             shared: {
                 ...shareAll({
                     singleton: true,

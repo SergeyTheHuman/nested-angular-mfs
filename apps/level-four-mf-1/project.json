@@ -1,0 +1,93 @@
+{
+    "name": "level-four-mf-1",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "app",
+    "sourceRoot": "apps/level-four-mf-1/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-builders/custom-webpack:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/level-four-mf-1",
+                "index": "apps/level-four-mf-1/src/index.html",
+                "main": "apps/level-four-mf-1/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/level-four-mf-1/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/level-four-mf-1/src/favicon.ico",
+                    "apps/level-four-mf-1/src/assets"
+                ],
+                "customWebpackConfig": {
+                    "path": "apps/level-four-mf-1/webpack.config.js"
+                },
+                "styles": [
+                    "shared-styles/reset.scss",
+                    "shared-styles/shared.scss",
+                    "apps/level-four-mf-1/src/styles.scss"
+                ],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-builders/custom-webpack:dev-server",
+            "options": {
+                "port": 4241,
+                "publicHost": "http://localhost:4241"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "level-four-mf-1:build:production"
+                },
+                "development": {
+                    "buildTarget": "level-four-mf-1:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "buildTarget": "level-four-mf-1:build"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/level-four-mf-1/jest.config.ts"
+            }
+        }
+    }
+}

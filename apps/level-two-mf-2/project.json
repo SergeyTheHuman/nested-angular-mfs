@@ -23,7 +23,11 @@
                 "customWebpackConfig": {
                     "path": "apps/level-two-mf-2/webpack.config.js"
                 },
-                "styles": ["apps/level-two-mf-2/src/styles.scss"],
+                "styles": [
+                    "shared-styles/reset.scss",
+                    "shared-styles/shared.scss",
+                    "apps/level-two-mf-2/src/styles.scss"
+                ],
                 "scripts": []
             },
             "configurations": {

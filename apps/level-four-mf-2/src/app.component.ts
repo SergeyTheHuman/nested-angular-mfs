@@ -1,14 +1,18 @@
 import { Component } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { DashboardComponent } from 'apps/top-level-host/src/app/dashboard.component'
+import { DashboardComponent } from '@nx-test/mf'
 
 @Component({
     standalone: true,
     imports: [RouterModule, DashboardComponent],
     selector: 'app-root',
     template: `
-        <h1>Welcome top-level-host</h1>
-        <app-dashboard />
+        <div class="wrapper">
+            <h1>level-four-mf-2</h1>
+            <app-dashboard
+                [urls]="['http://localhost:4251', 'http://localhost:4252']"
+            />
+        </div>
     `,
 })
 export class AppComponent {}
