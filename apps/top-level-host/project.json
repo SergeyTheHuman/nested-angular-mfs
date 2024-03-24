@@ -1,82 +1,93 @@
 {
-  "name": "top-level-host",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "app",
-  "sourceRoot": "apps/top-level-host/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/top-level-host",
-        "index": "apps/top-level-host/src/index.html",
-        "main": "apps/top-level-host/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/top-level-host/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/top-level-host/src/favicon.ico",
-          "apps/top-level-host/src/assets"
-        ],
-        "styles": ["apps/top-level-host/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+    "name": "top-level-host",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "app",
+    "sourceRoot": "apps/top-level-host/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-builders/custom-webpack:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/top-level-host",
+                "index": "apps/top-level-host/src/index.html",
+                "main": "apps/top-level-host/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/top-level-host/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/top-level-host/src/favicon.ico",
+                    "apps/top-level-host/src/assets"
+                ],
+                "customWebpackConfig": {
+                    "path": "apps/top-level-host/webpack.config.js"
+                },
+                "styles": [
+                    "shared-styles/reset.scss",
+                    "shared-styles/shared.scss",
+                    "apps/top-level-host/src/styles.scss"
+                ],
+                "scripts": []
             },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-builders/custom-webpack:dev-server",
+            "options": {
+                "port": 4200,
+                "publicHost": "http://localhost:4200"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "top-level-host:build:production"
+                },
+                "development": {
+                    "buildTarget": "top-level-host:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "buildTarget": "top-level-host:build"
             }
-          ],
-          "outputHashing": "all"
         },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "top-level-host:build:production"
+        "lint": {
+            "executor": "@nx/eslint:lint"
         },
-        "development": {
-          "buildTarget": "top-level-host:build:development"
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/top-level-host/jest.config.ts"
+            }
         }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "top-level-host:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/top-level-host/jest.config.ts"
-      }
     }
-  }
 }

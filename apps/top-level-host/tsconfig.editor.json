@@ -1,6 +1,10 @@
 {
-  "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
-  "compilerOptions": {},
-  "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
+    "extends": "./tsconfig.json",
+    "include": [
+        "src/**/*.ts",
+        "../../libs/mf/src/lib/dashboard.component.ts",
+        "../../libs/mf/src/lib/widget.component.ts"
+    ],
+    "compilerOptions": {},
+    "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }
